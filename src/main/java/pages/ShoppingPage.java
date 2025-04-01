@@ -32,6 +32,15 @@ public class ShoppingPage extends BasePage {
     @FindBy(className = "mt-atb-close")
     WebElement closeCartWidget;
 
+    @FindBy(css = "button.remove-item")
+    WebElement removeItemButton;
+
+    @FindBy(css = "div.cart-total")
+    WebElement cartTotal;
+
+    @FindBy(css = "div.empty-cart-message")
+    WebElement emptyCartMessage;
+
 
     public void searchByItemName(String itemName){
         wait.until(ExpectedConditions.visibilityOf(searchButton)).click();
@@ -68,5 +77,19 @@ public class ShoppingPage extends BasePage {
     public void closeCartWidget(){
         wait.until(ExpectedConditions.visibilityOf(closeCartWidget)).click();
         wait.until(ExpectedConditions.invisibilityOf(shoppingBagWidget));
+    }
+
+    public void removeItemFromCart(){
+        wait.until(ExpectedConditions.elementToBeClickable(removeItemButton)).click();
+    }
+
+    public String getCartTotal(){
+        wait.until(ExpectedConditions.visibilityOf(cartTotal));
+        return cartTotal.getText();
+    }
+
+    public String getEmptyCartMessage(){
+        wait.until(ExpectedConditions.visibilityOf(emptyCartMessage));
+        return emptyCartMessage.getText();
     }
 }

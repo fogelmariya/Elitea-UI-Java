@@ -23,4 +23,25 @@ public class AddToBagTest extends BaseTest {
         ShoppingBagPage shoppingBagPage = new ShoppingBagPage();
         Assert.assertTrue(shoppingBagPage.itemAddedToBagWidgetGetText().contains(searchValue));
     }
+
+    @Test
+    public void verifyThatRemoveItemFromCartPass() {
+        String searchValue = "Sneaker";
+        MainPage mainPage = new MainPage();
+        ShoppingPage shoppingPage = new ShoppingPage();
+        ItemDetailsPage itemDetailsPage = new ItemDetailsPage();
+        ShoppingBagPage shoppingBagPage = new ShoppingBagPage();
+
+        mainPage.closeCouponWidgetIfVisible();
+        shoppingPage.searchByItemName(searchValue);
+        shoppingPage.clickOnFirstItem();
+        itemDetailsPage.clickOnFirstSizeButton();
+        itemDetailsPage.clickAddToBagButton();
+        shoppingPage.viewShoppingCart();
+        Assert.assertTrue(shoppingBagPage.itemAddedToBagWidgetGetText().contains(searchValue));
+
+        shoppingBagPage.removeItemFromCart();
+        Assert.assertFalse(shoppingBagPage.itemAddedToBagWidgetGetText().contains(searchValue));
+        Assert.assertEquals("Your shopping bag is empty. Start shopping and check out our new arrivals.", shoppingBagPage.getEmptyCartMessage());
+    }
 }
