@@ -14,6 +14,12 @@ public class MainPage extends BasePage {
     @FindBy(className = "ui-icon-closethick")
     WebElement noThanks;
 
+    @FindBy(id = "q-search")
+    WebElement search;
+
+    @FindBy(css = "div#search button")
+    WebElement searchButton;
+
     public void clickSignIn() {
         signIn.click();
     }
@@ -23,4 +29,11 @@ public class MainPage extends BasePage {
             noThanks.click();
         }
     }
+
+    public void searchByItemName(String itemName){
+        wait.until(ExpectedConditions.visibilityOf(searchButton)).click();
+        wait.until(ExpectedConditions.visibilityOf(search)).clear();
+        search.sendKeys(itemName + "\n");
+    }
+}
 }
