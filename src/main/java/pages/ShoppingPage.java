@@ -11,6 +11,13 @@ import java.util.List;
 
 public class ShoppingPage extends BasePage {
 
+    public void viewShoppingCart(){
+        waitForReadyStateComplete();
+        scrollIntoView(viewBagButton);
+        WebElement button = wait.pollingEvery(Duration.ofMillis(1000)).ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.cssSelector("a.mini-cart-link")));
+        ((JavascriptExecutor) getDriver()).executeScript("arguments[0].click();", button);
+    }
+
     @FindBy(id = "q-search")
     WebElement search;
 

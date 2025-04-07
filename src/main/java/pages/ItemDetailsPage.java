@@ -24,8 +24,11 @@ public class ItemDetailsPage extends BasePage{
         waitForReadyStateComplete();
         wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("product-content"))));
        WebElement button= wait.pollingEvery(Duration.ofMillis(1000)).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(addToBagButton));
-       // scrollIntoView(button);
-        button.click();
+       button.click();
+    }
+
+    public void clickOnFirstSizeButton(){
+        sizeButtons.get(sizeButtons.size()-1).click();
     }
 
     public void clickOnFirstSizeButton(){
