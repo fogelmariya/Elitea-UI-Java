@@ -12,6 +12,14 @@ import java.time.Duration;
 import java.util.List;
 
 public class ItemDetailsPage extends BasePage{
+    public void selectSize(String size) {
+        // Implement size selection functionality
+    }
+
+    public void addToCart() {
+        // Implement add to cart functionality
+    }
+}
 
     @FindBy(id = "add-to-cart")
     WebElement addToBagButton;
