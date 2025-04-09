@@ -8,6 +8,20 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.util.List;
 
 public class ShoppingBagPage extends BasePage {
+    public void removeItemFromCart(String itemName) {
+        // Implement remove item functionality
+    }
+
+    public boolean isItemInCart(String itemName) {
+        // Implement check item in cart functionality
+        return false;
+    }
+
+    public boolean isCartEmpty() {
+        // Implement check if cart is empty functionality
+        return false;
+    }
+}
 
     @FindBy(css = "div.product-line-items-container")
     List<WebElement> itemsAddedToBagWidget;
