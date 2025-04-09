@@ -7,6 +7,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
 public class MainPage extends BasePage {
+    public void searchForItem(String itemName) {
+        // Implement search functionality
+    }
+}
 
     @FindBy(how = How.ID, using = "tr-account_signin")
     WebElement signIn;
