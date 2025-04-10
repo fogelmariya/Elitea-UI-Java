@@ -12,6 +12,15 @@ public class ShoppingBagPage extends BasePage {
     @FindBy(css = "div.product-line-items-container")
     List<WebElement> itemsAddedToBagWidget;
 
+    @FindBy(css = "button.remove-item")
+    WebElement removeItemButton;
+
+    @FindBy(css = "div.cart-total")
+    WebElement cartTotal;
+
+    @FindBy(css = "div.empty-cart-message")
+    WebElement emptyCartMessage;
+
 
 
     public String itemAddedToBagWidgetGetText(){
