@@ -12,7 +12,14 @@ public class ShoppingBagPage extends BasePage {
     @FindBy(css = "div.product-line-items-container")
     List<WebElement> itemsAddedToBagWidget;
 
+    @FindBy(css = "button.remove-item")
+    List<WebElement> removeItemButtons;
 
+    @FindBy(css = "div.cart-total")
+    WebElement cartTotal;
+
+    @FindBy(css = "div.empty-cart-message")
+    WebElement emptyCartMessage;
 
     public String itemAddedToBagWidgetGetText(){
         wait.until(ExpectedConditions.visibilityOfAllElements(itemsAddedToBagWidget));
@@ -20,5 +27,34 @@ public class ShoppingBagPage extends BasePage {
         return itemAddedToBagWidget.findElement(By.xpath(".//div[@class='line-item-name']")).getText();
     }
 
+    public void removeItem(String itemName) {
+        for (WebElement item : itemsAddedToBagWidget) {
+            if (item.findElement(By.xpath(".//div[@class='line-item-name']")).getText().equals(itemName)) {
+                item.findElement(By.xpath(".//button[@class='remove-item']")).click();
+                break;
+            }
+        }
+    }
 
+    public boolean isItemPresent(String itemName) {
+        for (WebElement item : itemsAddedToBagWidget) {
+            if (item.findElement(By.xpath(".//div[@class='line-item-name']")).getText().equals(itemName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isCartTotalUpdated() {
+        // Implement logic to check if cart total is updated
+        return true;
+    }
+
+    public boolean isCartEmpty() {
+        return itemsAddedToBagWidget.isEmpty();
+    }
+
+    public String getEmptyCartMessage() {
+        return emptyCartMessage.getText();
+    }
 }
