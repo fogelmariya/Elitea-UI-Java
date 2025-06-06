@@ -12,7 +12,11 @@ public class ShoppingBagPage extends BasePage {
     @FindBy(css = "div.product-line-items-container")
     List<WebElement> itemsAddedToBagWidget;
 
+    @FindBy(css = "button.remove-product")
+    WebElement removeItemButton;
 
+    @FindBy(css = "div.cart-empty")
+    WebElement emptyCartMessage;
 
     public String itemAddedToBagWidgetGetText(){
         wait.until(ExpectedConditions.visibilityOfAllElements(itemsAddedToBagWidget));
@@ -20,5 +24,15 @@ public class ShoppingBagPage extends BasePage {
         return itemAddedToBagWidget.findElement(By.xpath(".//div[@class='line-item-name']")).getText();
     }
 
+    public void removeItemFromCart() {
+        wait.until(ExpectedConditions.elementToBeClickable(removeItemButton)).click();
+    }
 
+    public boolean isCartEmpty() {
+        return wait.until(ExpectedConditions.visibilityOf(emptyCartMessage)).isDisplayed();
+    }
+
+    public String getEmptyCartMessage() {
+        return wait.until(ExpectedConditions.visibilityOf(emptyCartMessage)).getText();
+    }
 }
