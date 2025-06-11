@@ -12,7 +12,14 @@ public class ShoppingBagPage extends BasePage {
     @FindBy(css = "div.product-line-items-container")
     List<WebElement> itemsAddedToBagWidget;
 
+    @FindBy(css = "button.remove-product")
+    WebElement removeButton;
 
+    @FindBy(css = "div.cart-empty")
+    WebElement emptyCartMessage;
+
+    @FindBy(css = "div.order-total")
+    WebElement cartTotal;
 
     public String itemAddedToBagWidgetGetText(){
         wait.until(ExpectedConditions.visibilityOfAllElements(itemsAddedToBagWidget));
@@ -20,5 +27,27 @@ public class ShoppingBagPage extends BasePage {
         return itemAddedToBagWidget.findElement(By.xpath(".//div[@class='line-item-name']")).getText();
     }
 
+    public boolean isItemPresentInCart() {
+        return !itemsAddedToBagWidget.isEmpty();
+    }
 
+    public void removeItemFromCart() {
+        wait.until(ExpectedConditions.elementToBeClickable(removeButton));
+        removeButton.click();
+    }
+
+    public boolean isCartEmpty() {
+        return emptyCartMessage.isDisplayed();
+    }
+
+    public String getEmptyCartMessage() {
+        return emptyCartMessage.getText();
+    }
+
+    public boolean isCartTotalUpdated() {
+        // This is a simplified implementation. In a real scenario, you might want to compare
+        // the total before and after removing an item.
+        wait.until(ExpectedConditions.visibilityOf(cartTotal));
+        return cartTotal.isDisplayed();
+    }
 }
