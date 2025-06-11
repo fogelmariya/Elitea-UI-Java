@@ -29,8 +29,22 @@ public class ShoppingCartPage {
     }
 
     public void addItemToCart(String itemName, int quantity) {
-        // Implementation to add item to cart
-        // This is a placeholder and should be implemented based on your application's logic
+        // Navigate to the product page (this is a placeholder URL)
+        driver.get("https://your-website.com/product/" + itemName.toLowerCase().replace(" ", "-"));
+        
+        // Wait for the add to cart button to be clickable
+        WebElement addToCartButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("add-to-cart-button")));
+        
+        // Set the quantity
+        WebElement quantityInput = driver.findElement(By.id("quantity-input"));
+        quantityInput.clear();
+        quantityInput.sendKeys(String.valueOf(quantity));
+        
+        // Click the add to cart button
+        addToCartButton.click();
+        
+        // Wait for the cart to update (this is a placeholder and should be adjusted based on your application's behavior)
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("cart-updated-message")));
     }
 
     public void navigateToShoppingCart() {
