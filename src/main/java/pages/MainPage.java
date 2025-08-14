@@ -23,4 +23,8 @@ public class MainPage extends BasePage {
             noThanks.click();
         }
     }
+
+    public void navigateToHomePage() {
+        driver.get("https://www.example.com"); // Replace with the actual URL of your home page
+    }
 }
