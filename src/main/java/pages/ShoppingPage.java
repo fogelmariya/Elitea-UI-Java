@@ -69,4 +69,9 @@ public class ShoppingPage extends BasePage {
         wait.until(ExpectedConditions.visibilityOf(closeCartWidget)).click();
         wait.until(ExpectedConditions.invisibilityOf(shoppingBagWidget));
     }
+
+    public int getSearchResultsCount() {
+        wait.until(ExpectedConditions.visibilityOfAllElements(searchResults));
+        return searchResults.size();
+    }
 }
